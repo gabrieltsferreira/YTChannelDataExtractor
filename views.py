@@ -1,7 +1,11 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
-views = Blueprint(__name__, "views")
+views = Blueprint(__name__, 'views')
 
-@views.route("/")
-def home():
-    return render_template("index.html")
+@views.route('/', methods=['POST', 'GET'])
+def index():
+    if request.method == 'POST':
+        channel_id = request.form.get('channelID')
+        print(channel_id)
+
+    return render_template('index.html')
