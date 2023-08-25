@@ -146,6 +146,8 @@ def get_channel_stats(channel_id):
 
     # Converting video duration values from ISO
     df['duration'] = df['duration'].apply(lambda x: isodate.parse_duration(x).total_seconds())
+       
+    # Creating CSV File
+    df.to_csv('output/download.csv', encoding='utf-8')
 
-
-    return video_info
+    return channel_info['channel name'], video_info
