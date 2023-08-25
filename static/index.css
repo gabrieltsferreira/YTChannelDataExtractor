@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+}
+
+.content{
+    align-items: center;
+}
+
+.upper-content{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    background: #101f44;
+    align-items: center;
+}
+
+.input-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.input-sub-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.input-field{
+    display: flex;
+    justify-content: center;
+}
+
+.input-style{
+    border-radius: 10px;
+    width: 360px;
+    height: 30px;
+}
+
+.download-buton{
+    border-radius: 10px;
+    width: 120px;
+    height: 30px;
+}
+
+
+.lower-content{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+}
