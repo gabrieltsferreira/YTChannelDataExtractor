@@ -48,6 +48,25 @@ body{
 .lower-content{
     width: 100vw;
     height: 50vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial-title{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial-sub-title{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.tutorial-image{
     display: flex;
     justify-content: center;
 }
