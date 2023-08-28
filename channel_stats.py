@@ -1,6 +1,5 @@
 from googleapiclient.discovery import build
 import pandas as pd
-import matplotlib.pyplot as plt
 import isodate 
 from config import api_key, api_service_name, api_version
 
