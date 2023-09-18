@@ -14,11 +14,13 @@ def get_channel_info(channel_id):
         )
         response = request.execute()
 
-        data = {'channel name': response['items'][0]['snippet']['title'],
+        data = {'channel_name': response['items'][0]['snippet']['title'],
                 'subscribers': response['items'][0]['statistics']['subscriberCount'],
-                'total views': response['items'][0]['statistics']['viewCount'],
-                'videos count': response['items'][0]['statistics']['videoCount'],
-                'playlist_uploads_id': response['items'][0]['contentDetails']['relatedPlaylists']['uploads']              
+                'total_views': response['items'][0]['statistics']['viewCount'],
+                'videos_count': response['items'][0]['statistics']['videoCount'],
+                'playlist_uploads_id': response['items'][0]['contentDetails']['relatedPlaylists']['uploads'],
+                'profile_pic_url': response['items'][0]['snippet']['thumbnails']['default']['url'],
+                'country': response['items'][0]['snippet']['country']         
         }
 
         return data
@@ -149,4 +151,4 @@ def get_channel_stats(channel_id):
     # Creating CSV File
     df.to_csv('output/download.csv', encoding='utf-8')
 
-    return channel_info['channel name'], video_info
+    return channel_info, video_info

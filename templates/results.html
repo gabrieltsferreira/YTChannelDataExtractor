@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content">
+        <div class="upper-content">
+            <div class="channel_info_head">
+                <div class="profile">
+                    <div class="channel_title">
+                        {{ channel_info['channel_name'] }}
+                    </div>
+                    <div class="profile_pic">
+                        <img src=" {{ channel_info['profile_pic_url'] }} ">
+                    </div>
+                </div>                          
+            </div>        
+            <div class="channel_info_itens">
+                <div class="info_item">
+                    <div class="info_item_icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="info_item_title">
+                        Subscribers
+                    </div>
+                    <div class="info_item_display">
+                        {{ channel_info['subscribers'] }}
+                    </div>
+                </div>
+
+                <div class="info_item">
+                    <div class="info_item_icon">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="info_item_title">
+                        Total views
+                    </div>
+                    <div class="info_item_display">
+                        {{ channel_info['total_views'] }}
+                    </div>
+                </div>
+
+                <div class="info_item">
+                    <div class="info_item_icon">
+                        <i class="fa-solid fa-upload"></i>
+                    </div>
+                    <div class="info_item_title">
+                        Uploads
+                    </div>
+                    <div class="info_item_display">
+                        {{ channel_info['videos_count'] }}
+                    </div>
+                </div>
+
+                <div class="info_item">
+                    <div class="info_item_icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div class="info_item_title">
+                        Country
+                    </div>
+                    <div class="info_item_display">
+                        {{ channel_info['country'] }}
+                    </div>
+                </div>
+            </div>       
+        </div>       
+    </div>
+</body>    
+</html>
