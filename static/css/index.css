@@ -51,17 +51,20 @@ body{
     display: block;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
 }
 
 .tutorial-title{
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .tutorial-sub-title{
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 30px;
+    line-height: 24px;
     display: flex;
     justify-content: center;
 }
@@ -69,4 +72,92 @@ body{
 .tutorial-image{
     display: flex;
     justify-content: center;
+}
+
+
+@media (max-width: 1000px){
+
+    .image-resize{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px){
+
+    .upper-content{
+        height: 35vh;
+    }
+
+    .input-title{
+        font-size: 10px;
+    }    
+
+    .input-sub-title{
+        font-size: 12px;
+    }
+
+    .input-style{
+        border-radius: 10px;
+        width: 180px;
+        height: 16px;
+        font-size: 9px;
+    }
+
+    .download-buton{
+        border-radius: 10px;
+        width: 85px;
+        height: 20px;
+        font-size: 9px;
+    }
+
+    .tutorial-title{
+        font-size: 15px;
+    }
+
+    .tutorial-sub-title{
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+    
+}
+
+@media (max-width: 400px){
+
+    .upper-content{
+        height: 28vh;
+    }
+
+
+    .input-title{
+        font-size: 7px;
+    }    
+
+    .input-sub-title{
+        font-size: 10px;
+    }
+
+    .input-style{
+        border-radius: 10px;
+        width: 120px;
+        height: 12px;
+        font-size: 9px;
+    }
+
+    .download-buton{
+        border-radius: 10px;
+        width: 80px;
+        height: 16px;
+        font-size: 9px;
+    }
+
+    .tutorial-title{
+        font-size: 12px;
+    }
+
+    .tutorial-sub-title{
+        font-size: 9px;
+        line-height: 20px;
+    }
 }
