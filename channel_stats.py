@@ -6,7 +6,7 @@ from config import api_key, api_service_name, api_version
 # Get credentials and create an API client
 youtube = build(api_service_name, api_version, developerKey=api_key)
 
-# Get channel stats
+# Get channel info
 def get_channel_info(channel_id):
         request = youtube.channels().list(
                 part='snippet,contentDetails,statistics',
@@ -20,7 +20,7 @@ def get_channel_info(channel_id):
                 'videos_count': response['items'][0]['statistics']['videoCount'],
                 'playlist_uploads_id': response['items'][0]['contentDetails']['relatedPlaylists']['uploads'],
                 'profile_pic_url': response['items'][0]['snippet']['thumbnails']['default']['url'],
-                'country': response['items'][0]['snippet']['country']         
+                'country': response['items'][0]['snippet']['country'] if 'country' in response['items'][0]['snippet'] else '-'        
         }
 
         return data
@@ -28,7 +28,7 @@ def get_channel_info(channel_id):
 #----//----//----//----//----//----//----//----//----//----//----//----//----//----//
 
 # Get videos from playlist
-def get_video_ids(playlist_id):
+def get_video_ids(playlist_id, videos_count):
         video_ids = []
 
         request = youtube.playlistItems().list(
@@ -44,7 +44,7 @@ def get_video_ids(playlist_id):
 
         # Get next page results
         token = ''
-        while token != None:
+        while token != None and int(videos_count)>50:
                 request = youtube.playlistItems().list(
                 part="snippet,contentDetails",
                 maxResults=50,
@@ -132,7 +132,7 @@ def get_all_comments(video_ids):
 def get_channel_stats(channel_id):
     channel_info = get_channel_info(channel_id)
 
-    video_ids = get_video_ids(channel_info['playlist_uploads_id'])
+    video_ids = get_video_ids(channel_info['playlist_uploads_id'], channel_info['videos_count'])
 
     video_info = get_video_info(video_ids)
 
@@ -149,6 +149,9 @@ def get_channel_stats(channel_id):
     df['duration'] = df['duration'].apply(lambda x: isodate.parse_duration(x).total_seconds())
        
     # Creating CSV File
-    df.to_csv('output/download.csv', encoding='utf-8')
+    df.to_csv('output/download.csv', encoding='utf-8', index=False)
+
+
+    # Feature Engineering / Insights
 
     return channel_info, video_info

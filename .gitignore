@@ -161,3 +161,9 @@ cython_debug/
 
 # API key
 config.py
+
+# test script
+/output/test.ipynb
+
+# csv output
+/output/download.csv
