@@ -1,6 +1,8 @@
 from googleapiclient.discovery import build
 import pandas as pd
 import isodate 
+import datetime
+import ast
 from config import api_key, api_service_name, api_version
 
 # Get credentials and create an API client
@@ -81,6 +83,7 @@ def get_video_info(video_ids):
                                 'description': video['snippet']['description'], 
                                 'tags': video['snippet']['tags'] if 'tags' in video['snippet'] else None,
                                 'publishedAt': video['snippet']['publishedAt'],
+                                'thumbnail_url': video['snippet']['thumbnails']['default']['url'],
 
                                 # statistics
                                 'viewCount': video['statistics']['viewCount'],
@@ -130,28 +133,107 @@ def get_all_comments(video_ids):
 # print(pd.DataFrame(comments))
 
 def get_channel_stats(channel_id):
-    channel_info = get_channel_info(channel_id)
+        channel_info = get_channel_info(channel_id)
 
-    video_ids = get_video_ids(channel_info['playlist_uploads_id'], channel_info['videos_count'])
+        video_ids = get_video_ids(channel_info['playlist_uploads_id'], channel_info['videos_count'])
 
-    video_info = get_video_info(video_ids)
+        video_info = get_video_info(video_ids)
 
-    df = pd.DataFrame(video_info)
+        df = pd.DataFrame(video_info)
 
-    # Converting numeric cols to int
-    numeric_cols = ['viewCount', 'likeCount', 'favoriteCount', 'commentCount']
-    df[numeric_cols] = df[numeric_cols].astype(int)
+        # Converting numeric cols to int   
+        numeric_cols = ['viewCount', 'likeCount', 'favoriteCount', 'commentCount']
+        df[numeric_cols] = df[numeric_cols].astype(int)
 
-    # Converting date col to date type
-    df['publishedAt'] = pd.to_datetime(df['publishedAt'])
+        # Converting date col to date type
+        df['publishedAt'] = pd.to_datetime(df['publishedAt'])
 
-    # Converting video duration values from ISO
-    df['duration'] = df['duration'].apply(lambda x: isodate.parse_duration(x).total_seconds())
-       
-    # Creating CSV File
-    df.to_csv('output/download.csv', encoding='utf-8', index=False)
+        # Converting video duration values from ISO
+        df['duration'] = df['duration'].apply(lambda x: isodate.parse_duration(x).total_seconds())
+
+        # Creating CSV File
+        df.to_csv('output/download.csv', encoding='utf-8', index=False)
 
 
-    # Feature Engineering / Insights
+        # Insights 
+        insights = {}
 
-    return channel_info, video_info
+        # UPLOADS -------------//-------------//-------------//
+
+        total_uploads = df['video_id'].count()
+
+        last_post_day = df['publishedAt'][0]
+        first_post_day = df['publishedAt'].iloc[-1]
+
+        delta = last_post_day - first_post_day
+
+        # Uploads per Month
+        n_months = delta.days/30
+        insights['avg_uploads_per_month'] = total_uploads/n_months
+
+        # Uploads per Week
+        n_weeks = delta.days/7
+        insights['avg_uploads_per_week'] = total_uploads/n_weeks
+
+        # Uploads per Day
+        n_days = delta.days
+        insights['avg_uploads_per_day'] = total_uploads/n_days
+
+
+        # AVG METRICS -------------//-------------//-------------//
+
+        # avg views/video
+        insights['avg_views_per_video'] = df['viewCount'].median()
+
+        # avg likes/vieo
+        insights['avg_likes_per_video'] = df['likeCount'].median()
+
+        # avg comments/video
+        insights['avg_comments_per_video'] = df['commentCount'].median()
+
+        # avg video duration
+        insights['avg_video_duration'] = df['duration'].median()
+
+
+        # TOP 10 HASHTAGS -------------//-------------//-------------//
+
+        all_tags = []
+
+        for tag_group in df[df['tags'].notna()]['tags']:
+                if tag_group:
+                        all_tags.append(ast.literal_eval(str(tag_group)))    
+
+
+        flat_list = [item for sublist in all_tags for item in sublist]
+
+        top_hashtags = pd.Series(flat_list).value_counts()[:10].index.tolist()
+
+        insights['top_hashtags'] = top_hashtags
+
+
+        # TOP VIDEOS
+
+
+        # Week Days Upload distribution
+        weekdays_dist = {'Monday': 0, 'Tuesday': 0, 'Wednesday': 0, 'Thursday': 0, 'Friday': 0, 'Saturday': 0, 'Sunday': 0}
+
+        for dates in df['publishedAt']:
+                match dates.weekday():
+                        case 0:
+                                weekdays_dist['Monday'] = weekdays_dist['Monday'] + 1     
+                        case 1:
+                                weekdays_dist['Tuesday'] = weekdays_dist['Tuesday'] + 1
+                        case 2:
+                                weekdays_dist['Wednesday'] = weekdays_dist['Wednesday'] + 1
+                        case 3:
+                                weekdays_dist['Thursday'] = weekdays_dist['Thursday'] + 1
+                        case 4:
+                                weekdays_dist['Friday'] = weekdays_dist['Friday'] + 1
+                        case 5:
+                                weekdays_dist['Saturday'] = weekdays_dist['Saturday'] + 1
+                        case 6:
+                                weekdays_dist['Sunday'] = weekdays_dist['Sunday'] + 1
+
+        insights['weekdays_dist'] = weekdays_dist
+    
+        return channel_info, insights

@@ -7,7 +7,7 @@ views = Blueprint(__name__, 'views')
 def index():
     if request.method == 'POST':
         channel_id = request.form.get('channelID')
-        channel_info, data = get_channel_stats(channel_id)
+        channel_info, insights = get_channel_stats(channel_id)
         
         # send_file(
         #     'output/download.csv',
@@ -15,7 +15,7 @@ def index():
         #     download_name= channel_info['channel name'] + ' Channel Data' '.csv',
         #     as_attachment=True
         # )
-        return render_template('results.html', channel_info = channel_info, data = data)
+        return render_template('results.html', channel_info = channel_info, insights = insights)
     
     
     return render_template('index.html')
