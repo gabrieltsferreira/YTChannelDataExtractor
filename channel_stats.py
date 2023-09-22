@@ -155,8 +155,12 @@ def get_channel_stats(channel_id):
         df.to_csv('output/download.csv', encoding='utf-8', index=False)
 
 
-        # Insights 
+        # Insights -------------//-------------//-------------//-------------//
         insights = {}
+
+        # TOTAL LIKES -------------//-------------//-------------//
+        insights['total_likes'] = int(df['likeCount'].sum())
+
 
         # UPLOADS -------------//-------------//-------------//
 
@@ -235,5 +239,8 @@ def get_channel_stats(channel_id):
                                 weekdays_dist['Sunday'] = weekdays_dist['Sunday'] + 1
 
         insights['weekdays_dist'] = weekdays_dist
+
+
+        
     
         return channel_info, insights

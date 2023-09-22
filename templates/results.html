@@ -48,6 +48,18 @@
 
                 <div class="info_item">
                     <div class="info_item_icon">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </div>
+                    <div class="info_item_title">
+                        Total likes
+                    </div>
+                    <div class="info_item_display">
+                        {{ insights['total_likes'] }}
+                    </div>
+                </div>
+
+                <div class="info_item">
+                    <div class="info_item_icon">
                         <i class="fa-solid fa-upload"></i>
                     </div>
                     <div class="info_item_title">
@@ -83,7 +95,7 @@
     insights = JSON.parse('{{ insights | tojson }}')
 
     weekdays = insights.weekdays_dist
-    console.log(weekdays)
+    console.log(insights)
     
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
