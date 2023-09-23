@@ -12,7 +12,7 @@
 <body>
     <div class="content">
         <div class="upper-content">
-            <div class="channel_info_head">
+            <div class="channel_info_header">
                 <div class="profile">
                     <div class="channel_title">
                         {{ channel_info['channel_name'] }}
@@ -84,10 +84,21 @@
                 </div>
             </div>       
         </div>
-        <div class="charts-content" style="position: relative; height:40vh; width:80vw">
-            <canvas id="WeekdayUploads"></canvas>
-            <canvas id="TimeUploads"></canvas>
-        </div>      
+        <div class="lower-content">
+            <div class="analytics-header">
+                <div class="analytics-title">
+                    Analytics
+                </div>
+            </div>
+            <div class="charts-row">
+                <div class="charts-content" style="position: relative; height:40vh; width:100vw">
+                    <canvas id="WeekdayUploads"></canvas>                        
+                </div>
+                <div class="charts-content" style="position: relative; height:40vh; width:100vw">
+                    <canvas id="TimeUploads"></canvas>
+                </div>  
+            </div>
+        </div> 
     </div>
 </body>    
 </html>
@@ -116,7 +127,7 @@
                     'rgba(75, 192, 192, 0.5)',
                     'rgba(54, 162, 235, 0.5)',
                     'rgba(153, 102, 255, 0.5)',
-                    'rgba(201, 203, 207, 0.5)'
+                    'rgba(80, 200, 120, 0.5)'
                 ],
                 borderColor: [
                     'rgb(255, 99, 132)',
