@@ -215,10 +215,10 @@ def get_channel_stats(channel_id):
         insights['top_hashtags'] = top_hashtags
 
 
-        # TOP VIDEOS
+        # TOP VIDEOS -------------//-------------//-------------//
 
 
-        # Week Days Upload distribution
+        # Week Days Upload distribution -------------//-------------//-------------//
         weekdays_dist = {'Monday': 0, 'Tuesday': 0, 'Wednesday': 0, 'Thursday': 0, 'Friday': 0, 'Saturday': 0, 'Sunday': 0}
 
         for dates in df['publishedAt']:
@@ -241,6 +241,22 @@ def get_channel_stats(channel_id):
         insights['weekdays_dist'] = weekdays_dist
 
 
+        # Week Days Upload distribution -------------//-------------//-------------//
+        dates = []
+        times = []
+
+        for date_time in df['publishedAt']:
+                dates.append(date_time.strftime('%Y-%m-%d'))
+                times.append(date_time.strftime('%H:%M'))
         
-    
+        dates.reverse()
+        times.reverse()
+
+        insights['dates'] = dates
+        insights['times'] = times
+        
+
+
+
+
         return channel_info, insights

@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/results.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <title>{{ channel_info['channel_name'] }}'s Channel Analytics</title>
 </head>
 <body>
@@ -84,21 +85,24 @@
             </div>       
         </div>
         <div class="charts-content" style="position: relative; height:40vh; width:80vw">
-            <canvas id="myChart"></canvas>
-        </div>       
+            <canvas id="WeekdayUploads"></canvas>
+            <canvas id="TimeUploads"></canvas>
+        </div>      
     </div>
 </body>    
 </html>
 
 
 <script type="text/javascript">
+    // Convert flask object to JSON
     insights = JSON.parse('{{ insights | tojson }}')
 
-    weekdays = insights.weekdays_dist
     console.log(insights)
-    
-    const ctx = document.getElementById('myChart');
-    new Chart(ctx, {
+
+    // Weekday Uploads Chart --------//--------//--------//--------//
+    weekdays = insights.weekdays_dist
+
+    new Chart(document.getElementById('WeekdayUploads'), {
         type: 'bar',
         data: {
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -134,4 +138,64 @@
             }
         }
     });
+
+
+    // Time Uploads Chart --------//--------//--------//--------//
+    dates = insights.dates
+    times = insights.times
+
+    let data = dates.map((dates, index) => ({
+        x: moment(`${dates}`), 
+        y: moment(`1970-02-01 ${times[index]}`).valueOf()
+    }));
+
+    new Chart(document.getElementById('TimeUploads'), {
+        type: 'line',  
+        data: {
+            labels: insights.dates,
+            datasets: [{
+                label: 'Upload Time',
+                data: data,
+                fill: false,
+                backgroundColor: 'green',
+                borderColor: 'green'
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: false
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        min: moment('1970-02-01 00:00:00').valueOf(),
+                        max: moment('1970-02-01 23:59:59').valueOf(),
+                        stepSize: 3.6e+6,                       
+                        callback: function(value) {                       
+                            let time = moment(value)                   
+                            return time.format('h A');
+                        }
+                    }
+                },
+
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            value = context.parsed.y
+                            let time = moment(value)                   
+                            return time.format('HH:mm');
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
 </script>
