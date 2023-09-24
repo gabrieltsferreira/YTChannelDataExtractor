@@ -179,7 +179,8 @@
                     Top Videos
                 </div>
             </div>
-            {% for item in insights['top_videos'] %}
+            <div class="">
+                {% for item in insights['top_videos'] %}
                 <div class="analytics-info-row">
                     <img src="{{ item['thumbnail_url'] }}">
                     <div class="">{{ item['title'] }}</div>
@@ -188,7 +189,8 @@
                     <div class="">{{ item['commentCount'] }}</div>
                     <div class="">{{ item['duration'] }}</div>
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div> 
     </div>
 </body>    
