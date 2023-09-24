@@ -184,13 +184,13 @@ def get_channel_stats(channel_id):
         # AVG METRICS -------------//-------------//-------------//
 
         # avg views/video
-        insights['avg_views_per_video'] = df['viewCount'].median()
+        insights['avg_views_per_video'] = round(df['viewCount'].median())
 
         # avg likes/vieo
-        insights['avg_likes_per_video'] = df['likeCount'].median()
+        insights['avg_likes_per_video'] = round(df['likeCount'].median())
 
         # avg comments/video
-        insights['avg_comments_per_video'] = df['commentCount'].median()
+        insights['avg_comments_per_video'] = round(df['commentCount'].median())
 
         # avg video duration
         insights['avg_video_duration'] = str(datetime.timedelta(seconds = round(df['duration'].median())))
@@ -217,6 +217,25 @@ def get_channel_stats(channel_id):
 
 
         # TOP VIDEOS -------------//-------------//-------------//
+
+        top_10_video = df.sort_values(by=['viewCount'], ascending=False)[:10][['title', 'thumbnail_url', 'viewCount', 'likeCount', 'commentCount', 'duration']]
+
+        top_videos = []
+
+        for i in range(0, len(top_10_video)-1):
+                video = top_10_video.iloc[i]
+
+                data = {
+                        'title': video['title'],
+                        'thumbnail_url': video['thumbnail_url'],
+                        'viewCount': str(video['viewCount']),
+                        'likeCount': str(video['likeCount']),
+                        'commentCount': str(video['commentCount']),
+                        'duration': str(datetime.timedelta(seconds = round(video['duration'])))
+                }
+                top_videos.append(data)
+        
+        insights['top_videos'] = top_videos
 
 
         # Week Days Upload distribution -------------//-------------//-------------//
