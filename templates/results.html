@@ -87,31 +87,31 @@
         <div class="lower-content">
             <div class="analytics-header">
                 <div class="analytics-title">
-                    Analytics
+                    Upload Analytics
                 </div>
             </div>
-            <div class="uploads-info-row">
-                <div class="uploads-info-item">
-                    <div class="uploads-info-title">
+            <div class="analytics-info-row">
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
                         Avg. Uploads Per Month
                     </div>
-                    <div class="uploads-info-content">
+                    <div class="analytics-info-content">
                         {{ insights.avg_uploads_per_month }}
                     </div>
                 </div>
-                <div class="uploads-info-item">
-                    <div class="uploads-info-title">
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
                         Avg. Uploads Per Week
                     </div>
-                    <div class="uploads-info-content">
+                    <div class="analytics-info-content">
                         {{ insights.avg_uploads_per_week }}
                     </div>
                 </div>
-                <div class="uploads-info-item">
-                    <div class="uploads-info-title">
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
                         Avg. Uploads Per Day
                     </div>
-                    <div class="uploads-info-content">
+                    <div class="analytics-info-content">
                         {{ insights.avg_uploads_per_day }}
                     </div>
                 </div>
@@ -123,6 +123,55 @@
                 <div class="charts-content" style="position: relative; height:40vh; width:100vw">
                     <canvas id="TimeUploads"></canvas>
                 </div>  
+            </div>
+
+            <div class="analytics-header">
+                <div class="analytics-title">
+                    Video Analytics
+                </div>
+            </div>
+            <div class="analytics-info-row">
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
+                        Avg. Views Per Video
+                    </div>
+                    <div class="analytics-info-content">
+                        {{ insights.avg_views_per_video }}
+                    </div>
+                </div>
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
+                        Avg. Likes Per Video
+                    </div>
+                    <div class="analytics-info-content">
+                        {{ insights.avg_likes_per_video }}
+                    </div>
+                </div>
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
+                        Avg. Comments Per Video
+                    </div>
+                    <div class="analytics-info-content">
+                        {{ insights.avg_comments_per_video }}
+                    </div>
+                </div>
+
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
+                        Avg. Engagement Rate
+                    </div>
+                    <div class="analytics-info-content">
+                        {{ insights.avg_engagement_rate }}
+                    </div>
+                </div>
+                <div class="analytics-info-item">
+                    <div class="analytics-info-title">
+                        Avg. Video Duration
+                    </div>
+                    <div class="analytics-info-content">
+                        {{ insights.avg_video_duration }}
+                    </div>
+                </div>
             </div>
         </div> 
     </div>

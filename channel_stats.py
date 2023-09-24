@@ -193,7 +193,11 @@ def get_channel_stats(channel_id):
         insights['avg_comments_per_video'] = df['commentCount'].median()
 
         # avg video duration
-        insights['avg_video_duration'] = df['duration'].median()
+        insights['avg_video_duration'] = str(datetime.timedelta(seconds = round(df['duration'].median())))
+
+
+        # ENGAGEMENT RATE -------------//-------------//-------------//
+        insights['avg_engagement_rate'] = round((insights['avg_likes_per_video'] + insights['avg_comments_per_video']) / insights['avg_views_per_video'], 2) 
 
 
         # TOP 10 HASHTAGS -------------//-------------//-------------//
@@ -238,7 +242,7 @@ def get_channel_stats(channel_id):
         insights['weekdays_dist'] = weekdays_dist
 
 
-        # Week Days Upload distribution -------------//-------------//-------------//
+        # Upload Time distribution -------------//-------------//-------------//
         dates = []
         times = []
 
