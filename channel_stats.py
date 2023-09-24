@@ -129,9 +129,6 @@ def get_all_comments(video_ids):
 
 #----//----//----//----//----//----//----//----//----//----//----//----//----//----//
 
-# comments = get_all_comments(video_ids)
-# print(pd.DataFrame(comments))
-
 def get_channel_stats(channel_id):
         channel_info = get_channel_info(channel_id)
 
@@ -173,15 +170,15 @@ def get_channel_stats(channel_id):
 
         # Uploads per Month
         n_months = delta.days/30
-        insights['avg_uploads_per_month'] = total_uploads/n_months
+        insights['avg_uploads_per_month'] = round(total_uploads/n_months, 2)
 
         # Uploads per Week
         n_weeks = delta.days/7
-        insights['avg_uploads_per_week'] = total_uploads/n_weeks
+        insights['avg_uploads_per_week'] = round(total_uploads/n_weeks, 2)
 
         # Uploads per Day
         n_days = delta.days
-        insights['avg_uploads_per_day'] = total_uploads/n_days
+        insights['avg_uploads_per_day'] = round(total_uploads/n_days, 2)
 
 
         # AVG METRICS -------------//-------------//-------------//

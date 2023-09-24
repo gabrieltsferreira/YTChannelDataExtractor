@@ -90,6 +90,32 @@
                     Analytics
                 </div>
             </div>
+            <div class="uploads-info-row">
+                <div class="uploads-info-item">
+                    <div class="uploads-info-title">
+                        Avg. Uploads Per Month
+                    </div>
+                    <div class="uploads-info-content">
+                        {{ insights.avg_uploads_per_month }}
+                    </div>
+                </div>
+                <div class="uploads-info-item">
+                    <div class="uploads-info-title">
+                        Avg. Uploads Per Week
+                    </div>
+                    <div class="uploads-info-content">
+                        {{ insights.avg_uploads_per_week }}
+                    </div>
+                </div>
+                <div class="uploads-info-item">
+                    <div class="uploads-info-title">
+                        Avg. Uploads Per Day
+                    </div>
+                    <div class="uploads-info-content">
+                        {{ insights.avg_uploads_per_day }}
+                    </div>
+                </div>
+            </div>
             <div class="charts-row">
                 <div class="charts-content" style="position: relative; height:40vh; width:100vw">
                     <canvas id="WeekdayUploads"></canvas>                        
@@ -168,8 +194,8 @@
                 label: 'Upload Time',
                 data: data,
                 fill: false,
-                backgroundColor: 'green',
-                borderColor: 'green'
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 0.5)'
             }]
         },
         options: {

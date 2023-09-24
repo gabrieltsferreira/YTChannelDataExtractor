@@ -103,3 +103,33 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.uploads-info-row{
+    display: flex;
+    justify-content: center;
+}
+
+.uploads-info-item{
+    align-items: center;
+    justify-content: center;
+    padding: 20px 50px;
+    border:1px solid black;
+    border-radius: 10px;
+    padding: 20px 50px;
+}
+
+.uploads-info-title{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.uploads-info-content{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
