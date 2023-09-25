@@ -187,3 +187,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.video-link{
+    padding-left: 5px;
+}

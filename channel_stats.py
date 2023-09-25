@@ -129,7 +129,7 @@ def get_all_comments(video_ids):
 
 #----//----//----//----//----//----//----//----//----//----//----//----//----//----//
 
-# Notation for longer numbers
+# Notation for long numbers
 def formatNumber(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0
@@ -229,7 +229,7 @@ def get_channel_stats(channel_id):
 
         # TOP VIDEOS -------------//-------------//-------------//
 
-        top_10_video = df.sort_values(by=['viewCount'], ascending=False)[:10][['title', 'thumbnail_url', 'viewCount', 'likeCount', 'commentCount', 'duration']]
+        top_10_video = df.sort_values(by=['viewCount'], ascending=False)[:10][['video_id','title', 'thumbnail_url', 'viewCount', 'likeCount', 'commentCount', 'duration']]
 
         top_videos = []
 
@@ -237,6 +237,7 @@ def get_channel_stats(channel_id):
                 video = top_10_video.iloc[i]
 
                 data = {
+                        'video_url': 'https://www.youtube.com/watch?v=' + video['video_id'],
                         'title': video['title'],
                         'thumbnail_url': video['thumbnail_url'],
                         'thumbnail_url_hq': str(video['thumbnail_url']).replace('default', 'hqdefault'),

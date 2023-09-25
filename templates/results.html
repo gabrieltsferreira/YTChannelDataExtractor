@@ -188,14 +188,21 @@
                         <div class="top-videos-row">
                             <div class="video-thumbnail">
                                 <a href="{{ item['thumbnail_url_hq'] }}" target="_blank">
-                                    <abbr title="Click to expand">
+                                    <abbr title="Click to expand thumbnail">
                                         <img src="{{ item['thumbnail_url'] }}">
                                     </abbr>
-                                </a>
+                                </a>                               
                             </div>
                             
                             <div class="video-title">
                                 {{ item['title'] }}
+                                <div class="video-link">
+                                    <a href="{{ item['video_url'] }}" target="_blank">
+                                        <abbr title="Click to open video">
+                                            <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i>
+                                        </abbr>
+                                    </a>
+                                </div>
                             </div>
 
                             <div class="video-stats">
