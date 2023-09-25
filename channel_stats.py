@@ -79,7 +79,7 @@ def get_video_info(video_ids):
                         info = {'video_id': video['id'],   
                                 # info                            
                                 'channelTitle': video['snippet']['channelTitle'], 
-                                'title': video['snippet']['title'], 
+                                'title': str(video['snippet']['title']).replace('&', 'and'), 
                                 'description': video['snippet']['description'], 
                                 'tags': video['snippet']['tags'] if 'tags' in video['snippet'] else None,
                                 'publishedAt': video['snippet']['publishedAt'],
@@ -129,7 +129,7 @@ def get_all_comments(video_ids):
 
 #----//----//----//----//----//----//----//----//----//----//----//----//----//----//
 
-# Notation for longer number
+# Notation for longer numbers
 def formatNumber(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0
@@ -145,6 +145,8 @@ def get_channel_stats(channel_id):
 
         video_info = get_video_info(video_ids)
 
+
+        # Prepare and create CSV -------------//-------------//-------------//
         df = pd.DataFrame(video_info)
 
         # Converting numeric cols to int   
@@ -165,7 +167,7 @@ def get_channel_stats(channel_id):
         insights = {}
 
         # TOTAL LIKES -------------//-------------//-------------//
-        insights['total_likes'] = int(df['likeCount'].sum())
+        insights['total_likes'] = formatNumber(int(df['likeCount'].sum()))
 
 
         # UPLOADS -------------//-------------//-------------//
@@ -287,7 +289,9 @@ def get_channel_stats(channel_id):
         insights['times'] = times
         
 
-
-
+        # Format channel info numbers to dot notation -------------//-------------//-------------//
+        channel_info['subscribers'] = formatNumber(int(channel_info['subscribers']))
+        channel_info['total_views'] = formatNumber(int(channel_info['total_views']))
+        channel_info['videos_count'] = formatNumber(int(channel_info['videos_count']))
 
         return channel_info, insights

@@ -159,6 +159,9 @@
                 <div class="analytics-info-item">
                     <div class="analytics-info-title">
                         Avg. Engagement Rate
+                        <abbr title="(Avg. Likes + Avg. Comments)/Avg. Views">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </abbr>                      
                     </div>
                     <div class="analytics-info-content">
                         {{ insights.avg_engagement_rate }}
@@ -185,7 +188,9 @@
                         <div class="top-videos-row">
                             <div class="video-thumbnail">
                                 <a href="{{ item['thumbnail_url_hq'] }}" target="_blank">
-                                    <img src="{{ item['thumbnail_url'] }}">
+                                    <abbr title="Click to expand">
+                                        <img src="{{ item['thumbnail_url'] }}">
+                                    </abbr>
                                 </a>
                             </div>
                             
@@ -196,35 +201,45 @@
                             <div class="video-stats">
                                 <div class="video-stats-item">
                                     <div class="video-stats-icon">
-                                        <i class="fa-regular fa-eye"></i>
+                                        <abbr title="Views">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </abbr>
                                     </div>
                                     {{ item['viewCount'] }}
                                 </div>
 
                                 <div class="video-stats-item">
                                     <div class="video-stats-icon">
-                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <abbr title="Likes">
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                        </abbr>                                        
                                     </div>
                                     {{ item['likeCount'] }}
                                 </div>
 
                                 <div class="video-stats-item">
                                     <div class="video-stats-icon">
-                                        <i class="fa-regular fa-comment"></i>
+                                        <abbr title="Comments">
+                                            <i class="fa-regular fa-comment"></i>
+                                        </abbr>
                                     </div>
                                     {{ item['commentCount'] }}
                                 </div>
 
                                 <div class="video-stats-item">
                                     <div class="video-stats-icon">
-                                        <i class="fa-solid fa-temperature-half"></i>
+                                        <abbr title="Engagement Rate">
+                                            <i class="fa-solid fa-temperature-half"></i>
+                                        </abbr>
                                     </div>
                                     {{ item['engagement_rate'] }}
                                 </div>
 
                                 <div class="video-stats-item">
                                     <div class="video-stats-icon">
-                                        <i class="fa-regular fa-clock"></i>
+                                        <abbr title="Duration">
+                                            <i class="fa-regular fa-clock"></i>
+                                        </abbr>
                                     </div>
                                     {{ item['duration'] }}
                                 </div>
@@ -241,13 +256,11 @@
 
 <script type="text/javascript">
     // Convert flask object to JSON
-    insights = JSON.parse('{{ insights | tojson }}')
-
-    console.log(insights)
+    weekdays = JSON.parse('{{ insights.weekdays_dist | tojson }}')
+    dates = JSON.parse('{{ insights.dates | tojson }}')
+    times = JSON.parse('{{ insights.times | tojson }}')
 
     // Weekday Uploads Chart --------//--------//--------//--------//
-    weekdays = insights.weekdays_dist
-
     new Chart(document.getElementById('WeekdayUploads'), {
         type: 'bar',
         data: {
@@ -287,9 +300,6 @@
 
 
     // Time Uploads Chart --------//--------//--------//--------//
-    dates = insights.dates
-    times = insights.times
-
     let data = dates.map((dates, index) => ({
         x: moment(`${dates}`), 
         y: moment(`1970-02-01 ${times[index]}`).valueOf()
@@ -298,7 +308,7 @@
     new Chart(document.getElementById('TimeUploads'), {
         type: 'line',  
         data: {
-            labels: insights.dates,
+            labels: dates,
             datasets: [{
                 label: 'Upload Time',
                 data: data,
