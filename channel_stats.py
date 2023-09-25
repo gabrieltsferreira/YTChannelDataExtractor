@@ -241,6 +241,7 @@ def get_channel_stats(channel_id):
                         'viewCount': str(formatNumber(video['viewCount'])),
                         'likeCount': str(formatNumber(video['likeCount'])),
                         'commentCount': str(formatNumber(video['commentCount'])),
+                        'engagement_rate': str(round((video['likeCount']+video['commentCount'])/video['viewCount'], 2)),
                         'duration': str(datetime.timedelta(seconds = round(video['duration'])))
                 }
                 top_videos.append(data)

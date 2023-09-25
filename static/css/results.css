@@ -164,7 +164,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 800px;
+    width: 60vw;
 }
 
 .video-stats{
