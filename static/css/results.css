@@ -180,3 +180,10 @@ body{
 .video-stats-icon{
     padding-right: 5px;
 }
+
+
+.top_hashtags-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

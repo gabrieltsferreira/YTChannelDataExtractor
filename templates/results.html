@@ -248,6 +248,17 @@
                     {% endfor %}
                 </div>
             </div>
+
+            <div class="analytics-header">
+                <div class="analytics-title">
+                    Most Used Tags
+                </div>
+            </div>
+            <div class="top_hashtags-content">
+                <div class="charts-content" style="position: relative; height:70vh; width:80vw">
+                    <canvas id="TopHashtags"></canvas>                        
+                </div>
+            </div>
         </div> 
     </div>
 </body>    
@@ -259,6 +270,7 @@
     weekdays = JSON.parse('{{ insights.weekdays_dist | tojson }}')
     dates = JSON.parse('{{ insights.dates | tojson }}')
     times = JSON.parse('{{ insights.times | tojson }}')
+    tags = JSON.parse('{{ insights.top_hashtags | tojson }}')
 
     // Weekday Uploads Chart --------//--------//--------//--------//
     new Chart(document.getElementById('WeekdayUploads'), {
@@ -353,5 +365,49 @@
         }
     });
 
-
+    // Top Hashtags Chart --------//--------//--------//--------//
+    
+    // Sort tags in descending order
+    let sorted = Object.entries(tags).sort((a,b) => b[1]-a[1])   
+    let labels = sorted.map(x => x[0])
+    let values = sorted.map(x => x[1])
+    
+    new Chart(document.getElementById('TopHashtags'), {
+        type: 'bar',  
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '',
+                data: values,
+                backgroundColor:[ 
+                    'rgba(255, 241, 0, 0.5)',
+                    'rgba(255, 140, 0, 0.5)',
+                    'rgba(232, 17, 35, 0.5)',
+                    'rgba(236, 0, 140, 0.5)',
+                    'rgba(104, 33, 122, 0.5)',
+                    'rgba(0, 24, 143, 0.5)',
+                    'rgba(0, 188, 242, 0.5)',
+                    'rgba(0, 178, 148, 0.5)',
+                    'rgba(0, 158, 73, 0.5)',
+                    'rgba(186, 216, 10, 0.5)'
+                ]}]
+        },
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                title: {
+                    display: false
+                }
+            }
+        },
+    });
 </script>

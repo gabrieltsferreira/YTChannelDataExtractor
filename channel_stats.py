@@ -222,7 +222,7 @@ def get_channel_stats(channel_id):
 
         flat_list = [item for sublist in all_tags for item in sublist]
 
-        top_hashtags = pd.Series(flat_list).value_counts()[:10].index.tolist()
+        top_hashtags = pd.Series(flat_list).value_counts()[:10].to_dict()
 
         insights['top_hashtags'] = top_hashtags
 
