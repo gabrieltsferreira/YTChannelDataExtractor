@@ -179,17 +179,38 @@
                     Top Videos
                 </div>
             </div>
-            <div class="">
-                {% for item in insights['top_videos'] %}
-                <div class="analytics-info-row">
-                    <img src="{{ item['thumbnail_url'] }}">
-                    <div class="">{{ item['title'] }}</div>
-                    <div class="">{{ item['viewCount'] }}</div>
-                    <div class="">{{ item['likeCount'] }}</div>
-                    <div class="">{{ item['commentCount'] }}</div>
-                    <div class="">{{ item['duration'] }}</div>
+            <div class="top-videos-content">             
+                <div class="top-videos-row-item">
+                    {% for item in insights['top_videos'] %}
+                        <div class="top-videos-row">
+                            <div class="video-thumbnail">
+                                <img src="{{ item['thumbnail_url'] }}">
+                            </div>
+                            
+                            <div class="video-title">
+                                {{ item['title'] }}
+                            </div>
+
+                            <div class="video-stats">
+                                <div class="video-stats-item">
+                                    {{ item['viewCount'] }}
+                                </div>
+
+                                <div class="video-stats-item">
+                                    {{ item['likeCount'] }}
+                                </div>
+
+                                <div class="video-stats-item">
+                                    {{ item['commentCount'] }}
+                                </div>
+
+                                <div class="video-stats-item">
+                                    {{ item['duration'] }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div> 
     </div>

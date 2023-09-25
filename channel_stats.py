@@ -129,6 +129,15 @@ def get_all_comments(video_ids):
 
 #----//----//----//----//----//----//----//----//----//----//----//----//----//----//
 
+# Notation for longer number
+def formatNumber(num):
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
 def get_channel_stats(channel_id):
         channel_info = get_channel_info(channel_id)
 
@@ -228,9 +237,9 @@ def get_channel_stats(channel_id):
                 data = {
                         'title': video['title'],
                         'thumbnail_url': video['thumbnail_url'],
-                        'viewCount': str(video['viewCount']),
-                        'likeCount': str(video['likeCount']),
-                        'commentCount': str(video['commentCount']),
+                        'viewCount': str(formatNumber(video['viewCount'])),
+                        'likeCount': str(formatNumber(video['likeCount'])),
+                        'commentCount': str(formatNumber(video['commentCount'])),
                         'duration': str(datetime.timedelta(seconds = round(video['duration'])))
                 }
                 top_videos.append(data)

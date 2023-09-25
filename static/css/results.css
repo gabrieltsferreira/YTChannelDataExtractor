@@ -135,3 +135,44 @@ body{
     justify-content: center;
     padding-top: 5px;
 }
+
+
+.top-videos-content{
+
+}
+
+
+.top-videos-row{
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.top-videos-row-item{
+    max-width: 100vw;
+}
+
+.video-thumbnail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}
+
+.video-stats{
+    align-items: center;
+}
+
+.video-stats-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
