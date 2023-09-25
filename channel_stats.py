@@ -237,6 +237,7 @@ def get_channel_stats(channel_id):
                 data = {
                         'title': video['title'],
                         'thumbnail_url': video['thumbnail_url'],
+                        'thumbnail_url_hq': str(video['thumbnail_url']).replace('default', 'hqdefault'),
                         'viewCount': str(formatNumber(video['viewCount'])),
                         'likeCount': str(formatNumber(video['likeCount'])),
                         'commentCount': str(formatNumber(video['commentCount'])),

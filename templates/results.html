@@ -184,7 +184,9 @@
                     {% for item in insights['top_videos'] %}
                         <div class="top-videos-row">
                             <div class="video-thumbnail">
-                                <img src="{{ item['thumbnail_url'] }}">
+                                <a href="{{ item['thumbnail_url_hq'] }}" target="_blank">
+                                    <img src="{{ item['thumbnail_url'] }}">
+                                </a>
                             </div>
                             
                             <div class="video-title">
