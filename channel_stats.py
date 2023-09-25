@@ -293,5 +293,8 @@ def get_channel_stats(channel_id):
         channel_info['subscribers'] = formatNumber(int(channel_info['subscribers']))
         channel_info['total_views'] = formatNumber(int(channel_info['total_views']))
         channel_info['videos_count'] = formatNumber(int(channel_info['videos_count']))
+        insights['avg_views_per_video'] = formatNumber(insights['avg_views_per_video'])
+        insights['avg_likes_per_video'] = formatNumber(insights['avg_likes_per_video'])
+        insights['avg_comments_per_video'] = formatNumber(insights['avg_comments_per_video'])
 
         return channel_info, insights
