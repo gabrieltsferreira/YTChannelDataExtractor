@@ -124,6 +124,11 @@ body{
         font-size: 9px;
     }
 
+    .input-option-item{
+        font-size: 12px;
+        padding-top: 4px;
+    }
+
     .tutorial-title{
         font-size: 15px;
     }
@@ -163,6 +168,11 @@ body{
         width: 80px;
         height: 16px;
         font-size: 9px;
+    }
+
+    .input-option-item{
+        font-size: 9px;
+        padding-top: 4px;
     }
 
     .tutorial-title{
