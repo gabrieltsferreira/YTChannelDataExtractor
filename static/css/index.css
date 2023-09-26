@@ -45,6 +45,19 @@ body{
 }
 
 
+.input-option{
+    display: flex;
+    justify-content: left;
+}
+
+.input-option-item{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
 .lower-content{
     width: 100vw;
     height: 50vh;

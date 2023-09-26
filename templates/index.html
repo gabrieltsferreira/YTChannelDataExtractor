@@ -19,9 +19,20 @@
                     </p>
                 </div>
                 <div class="input-field">
-                    <form method="post" autocomplete="off">
+                    <form class="forms" method="post" autocomplete="off">
                         <input class="input-style" type="text" name="channelID" placeholder="Insert channel ID here" required>
-                        <button class="download-buton" type="submit">Download Data</button>
+                        <button class="download-buton" type="submit">Process Data</button>
+
+                        <div class="input-option">
+                            <div class="input-option-item">
+                                <input type="radio" id="download" name="check" value="download" checked />
+                                <label for="download">Download raw data</label>
+                            </div>
+                            <div class="input-option-item">
+                                <input type="radio" id="analyse" name="check" value="analyse" />
+                                <label for="analyse">Analyse data</label>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

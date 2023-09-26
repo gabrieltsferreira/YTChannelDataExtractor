@@ -9,13 +9,18 @@ def index():
         channel_id = request.form.get('channelID')
         channel_info, insights = get_channel_stats(channel_id)
         
-        # send_file(
-        #     'output/download.csv',
-        #     mimetype='text/csv',
-        #     download_name= channel_info['channel name'] + ' Channel Data' '.csv',
-        #     as_attachment=True
-        # )
-        return render_template('results.html', channel_info = channel_info, insights = insights)
+        check = request.form.getlist('check')[0]
+        
+        if check == 'download':
+            return send_file(
+                'output/download.csv',
+                mimetype='text/csv',
+                download_name= channel_info['channel_name'] + ' Channel Data' '.csv',
+                as_attachment=True
+            )
+                
+        elif check == 'analyse':           
+            return render_template('results.html', channel_info = channel_info, insights = insights)
     
     
     return render_template('index.html')
