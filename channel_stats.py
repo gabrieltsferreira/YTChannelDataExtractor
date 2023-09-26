@@ -16,6 +16,10 @@ def get_channel_info(channel_id):
         )
         response = request.execute()
 
+        # Check if channel ID is valid
+        if(response['pageInfo']['totalResults'] == 0):
+                return 'error'
+
         data = {'channel_name': response['items'][0]['snippet']['title'],
                 'subscribers': response['items'][0]['statistics']['subscriberCount'],
                 'total_views': response['items'][0]['statistics']['viewCount'],
@@ -141,8 +145,11 @@ def formatNumber(num):
 def get_channel_stats(channel_id):
         channel_info = get_channel_info(channel_id)
 
-        video_ids = get_video_ids(channel_info['playlist_uploads_id'], channel_info['videos_count'])
+        # Invalid channel ID
+        if channel_info == 'error':
+                return None, None
 
+        video_ids = get_video_ids(channel_info['playlist_uploads_id'], channel_info['videos_count'])
         video_info = get_video_info(video_ids)
 
 

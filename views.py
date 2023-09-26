@@ -7,7 +7,12 @@ views = Blueprint(__name__, 'views')
 def index():
     if request.method == 'POST':
         channel_id = request.form.get('channelID')
+        
         channel_info, insights = get_channel_stats(channel_id)
+        
+        # Invalid channel ID
+        if channel_info == None:
+            return render_template('index.html', error=True)
         
         check = request.form.getlist('check')[0]
         

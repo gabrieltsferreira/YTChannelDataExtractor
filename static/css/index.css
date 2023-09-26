@@ -57,6 +57,37 @@ body{
     padding-right: 10px;
 }
 
+.input-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    color: #f44336;
+    font-family: Arial, Helvetica, sans-serif;
+}
+  
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
 
 .lower-content{
     width: 100vw;
@@ -137,6 +168,10 @@ body{
         font-size: 12px;
         line-height: 20px;
     }
+
+    .alert{
+        font-size: 12px;
+    }
     
     
 }
@@ -182,5 +217,9 @@ body{
     .tutorial-sub-title{
         font-size: 9px;
         line-height: 20px;
+    }
+
+    .alert{
+        font-size: 9px;
     }
 }

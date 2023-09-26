@@ -20,7 +20,7 @@
                 </div>
                 <div class="input-field">
                     <form class="forms" method="post" autocomplete="off">
-                        <input class="input-style" type="text" name="channelID" placeholder="Insert channel ID here" required autocomplete="off">
+                        <input class="input-style" type="text" name="channelID" placeholder="Insert channel ID here" autocomplete="off" required>
                         <button class="download-buton" type="submit">Process Data</button>
 
                         <div class="input-option">
@@ -33,8 +33,15 @@
                                 <label for="analyse">Analyse data</label>
                             </div>
                         </div>
-                    </form>
+                    </form>                   
                 </div>
+                
+                {% if error %}
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        Invalid channel ID. Please follow instructions below.
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="lower-content">
