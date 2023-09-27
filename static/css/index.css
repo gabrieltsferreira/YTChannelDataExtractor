@@ -121,6 +121,7 @@ body{
 }
 
 
+/* Responsive */
 @media (max-width: 1000px){
 
     .image-resize{

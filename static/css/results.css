@@ -191,3 +191,81 @@ body{
 .video-link{
     padding-left: 5px;
 }
+
+
+
+
+/* Responsive */
+@media (max-width: 1100px){
+
+    .charts-row{
+        display: grid;
+    }
+
+    .analytics-info-row{
+        display: grid;
+    }
+
+}
+
+
+@media (max-width: 900px){
+
+    .info_item_icon{
+        font-size: 17px;
+    }
+
+    .info_item_title{
+        font-size: 13px;
+    }
+
+    .info_item_display{
+        font-size: 17px;
+    }
+
+    .info_item{
+        padding: 5px 15px;
+    }
+
+
+
+
+    .top-videos-row{
+        display: grid;
+    }
+
+    .top-videos-row-item{
+        font-size: 14px;
+    }
+
+    .video-stats{
+        display: flex;
+        justify-content: center;
+        align-items: normal;
+    }
+
+}
+
+@media (max-width: 500px){
+    .info_item_icon{
+        font-size: 15px;
+    }
+
+    .info_item_title{
+        font-size: 11px;
+    }
+
+    .info_item_display{
+        font-size: 15px;
+    }
+
+    .info_item{
+        padding: 2px 5px;
+    }
+
+    .top-videos-row-item{
+        font-size: 12px;
+    }
+
+
+}
