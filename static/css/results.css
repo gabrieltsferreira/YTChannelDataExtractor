@@ -8,9 +8,25 @@ body{
 
 .upper-content{
     width: 100vw;
-    height: 60vh;
+    height: 66vh;
     background: #101f44;
 }
+
+.back-button-row{
+
+}
+
+.back-button{
+    background-color: #101f44;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor:pointer;
+  }
+
 
 .channel_info_header{
     display: flex;
@@ -211,7 +227,11 @@ body{
 
 @media (max-width: 900px){
     .upper-content{
-        height: 52vh;
+        height: 60vh;
+    }
+
+    .back-button{
+        padding: 11px 28px;
     }
 
     .channel_title{
@@ -255,8 +275,12 @@ body{
 
 @media (max-width: 500px){
 
+    .back-button{
+        padding: 9px 26px;
+    }
+
     .upper-content{
-        height: 49vh;
+        height: 55vh;
     }
 
     .channel_title{
