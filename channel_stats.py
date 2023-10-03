@@ -3,10 +3,16 @@ import pandas as pd
 import isodate 
 import datetime
 import ast
-from config import api_key, api_service_name, api_version
+import os
+
+# # (Development)
+# from config import api_key 
+
+# (Production)
+api_key = os.environ.get('API_KEY')
 
 # Get credentials and create an API client
-youtube = build(api_service_name, api_version, developerKey=api_key)
+youtube = build('youtube', 'v3', developerKey=api_key)
 
 # Get channel info
 def get_channel_info(channel_id):
