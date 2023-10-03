@@ -3,7 +3,8 @@ body{
 }
 
 .content{
-    align-items: center;
+    height: 100%;
+    padding-bottom: 100px;
 }
 
 .upper-content{
@@ -93,7 +94,7 @@ body{
 
 .lower-content{
     width: 100vw;
-    height: 50vh;
+    height: 100vh;
     display: block;
     justify-content: center;
     align-items: center;

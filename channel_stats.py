@@ -5,11 +5,11 @@ import datetime
 import ast
 import os
 
-# # (Development)
-# from config import api_key 
+# (Development)
+from config import api_key 
 
-# (Production)
-api_key = os.environ.get('API_KEY')
+# # (Production)
+# api_key = os.environ.get('API_KEY')
 
 # Get credentials and create an API client
 youtube = build('youtube', 'v3', developerKey=api_key)
