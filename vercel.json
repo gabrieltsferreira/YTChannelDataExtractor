@@ -1,5 +1,4 @@
 {
-    "devCommand": "flask run -h localhost -p 3000",
     "builds": [
       {
         "src": "app.py",
@@ -11,6 +10,5 @@
         "src": "/(.*)",
         "dest": "app.py"
       }
-    ],
-    "installCommand": "pip install -r requirements.txt"
-  }
+    ]
+}

@@ -18,7 +18,7 @@ def index():
         
         if check == 'download':
             return send_file(
-                'output/download.csv',
+                '/tmp/download.csv',
                 mimetype='text/csv',
                 download_name= channel_info['channel_name'] + ' Channel Data' '.csv',
                 as_attachment=True

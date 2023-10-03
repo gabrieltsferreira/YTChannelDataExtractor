@@ -173,7 +173,7 @@ def get_channel_stats(channel_id):
         df['duration'] = df['duration'].apply(lambda x: isodate.parse_duration(x).total_seconds())
 
         # Creating CSV File
-        df.to_csv('output/download.csv', encoding='utf-8', index=False)
+        df.to_csv('/tmp/download.csv', encoding='utf-8', index=False)
 
 
         # Insights -------------//-------------//-------------//-------------//
@@ -266,25 +266,19 @@ def get_channel_stats(channel_id):
 
 
         # Week Days Upload distribution -------------//-------------//-------------//
-        weekdays_dist = {'Monday': 0, 'Tuesday': 0, 'Wednesday': 0, 'Thursday': 0, 'Friday': 0, 'Saturday': 0, 'Sunday': 0}
+        weekdays_count = df['publishedAt'].apply(lambda x: x.weekday()).value_counts().to_dict()
 
-        for dates in df['publishedAt']:
-                match dates.weekday():
-                        case 0:
-                                weekdays_dist['Monday'] = weekdays_dist['Monday'] + 1     
-                        case 1:
-                                weekdays_dist['Tuesday'] = weekdays_dist['Tuesday'] + 1
-                        case 2:
-                                weekdays_dist['Wednesday'] = weekdays_dist['Wednesday'] + 1
-                        case 3:
-                                weekdays_dist['Thursday'] = weekdays_dist['Thursday'] + 1
-                        case 4:
-                                weekdays_dist['Friday'] = weekdays_dist['Friday'] + 1
-                        case 5:
-                                weekdays_dist['Saturday'] = weekdays_dist['Saturday'] + 1
-                        case 6:
-                                weekdays_dist['Sunday'] = weekdays_dist['Sunday'] + 1
+        weekdays_dist = {}
 
+        weekdays_dist['Monday'] = weekdays_count[0] if 0 in weekdays_count else 0
+        weekdays_dist['Tuesday'] = weekdays_count[1] if 1 in weekdays_count else 0
+        weekdays_dist['Wednesday'] = weekdays_count[2] if 2 in weekdays_count else 0
+        weekdays_dist['Thursday'] = weekdays_count[3] if 3 in weekdays_count else 0
+        weekdays_dist['Friday'] = weekdays_count[4] if 4 in weekdays_count else 0
+        weekdays_dist['Saturday'] = weekdays_count[5] if 5 in weekdays_count else 0
+        weekdays_dist['Sunday'] = weekdays_count[6] if 6 in weekdays_count else 0
+
+        
         insights['weekdays_dist'] = weekdays_dist
 
 
