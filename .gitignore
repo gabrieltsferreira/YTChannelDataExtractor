@@ -167,3 +167,4 @@ config.py
 
 # csv output
 /output/download.csv
+.vercel
