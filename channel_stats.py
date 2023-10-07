@@ -23,7 +23,7 @@ def get_channel_info(channel_id):
         response = request.execute()
 
         # Check if channel ID is valid
-        if(response['pageInfo']['totalResults'] == 0):
+        if(response['pageInfo']['totalResults'] == 0 or response['items'][0]['statistics']['videoCount'] == '0'):
                 return 'error'
 
         data = {'channel_name': response['items'][0]['snippet']['title'],
